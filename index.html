@@ -1,0 +1,8 @@
+<!DOCTYPE html><html><head><base href="/dw-regieapp/"><meta charset="UTF-8"><meta content="IE=Edge" http-equiv="X-UA-Compatible"><meta name="description" content="DÄMMWERK RegieApp"><title>DÄMMWERK RegieApp</title>  <script>
+    // DÄMMWERK V22: Passkeys sind im Prototyp deaktiviert.
+    // Login läuft über Supabase E-Mail/Passwort.
+    // Dieser Guard verhindert einen Web-Crash, falls ein transitive package noch nach dem Passkeys SDK prüft.
+    window.__DW_PASSKEYS_DISABLED__ = true;
+  </script>
+  <script src="https://github.com/corbado/flutter-passkeys/releases/download/2.4.0/bundle.js"></script>
+</head><body><script src="flutter_bootstrap.js" async></script></body></html>
