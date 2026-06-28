@@ -31266,7 +31266,7 @@ case 6:m=$.Mk().gDw().h(0,"SUPABASE_URL")
 if(m==null)m=""
 l=$.Mk().gDw().h(0,"SUPABASE_ANON_KEY")
 if(l==null)l=""
-if(B.n.p(m,"DEIN-PROJEKT")||B.n.p(l,"DEIN_SUPABASE")){s=1
+if(m.length===0||l.length===0||B.n.p(m,"DEIN-PROJEKT")||B.n.p(l,"DEIN_SUPABASE")){s=1
 break}s=8
 return A.l(A.arQ(l,m),$async$V3)
 case 8:case 1:return A.q(q,r)
