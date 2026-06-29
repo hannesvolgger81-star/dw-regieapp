@@ -54379,9 +54379,7 @@ s=B.n.b1(J.a2(p==null?"":p))
 q=q.h(a,"company")
 r=B.n.b1(J.a2(q==null?"":q))
 if(this.a==="foreman"&&o.length!==0)return o
-q=s.length!==0
-if(q&&r.length!==0)return s+" ("+r+")"
-if(q)return s
+if(s.length!==0)return s
 if(r.length!==0)return r
 if(o.length!==0)return o
 return"ohne Name"},
