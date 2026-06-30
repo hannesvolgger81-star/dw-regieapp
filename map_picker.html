@@ -63,10 +63,25 @@
       }
 
       const map = L.map('map', { zoomControl: true }).setView([lat, lng], zoom);
-      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 20,
         attribution: 'Tiles &copy; Esri'
       }).addTo(map);
+      const placeLabels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 20,
+        opacity: 0.92,
+        attribution: 'Labels &copy; Esri'
+      }).addTo(map);
+      const roads = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 20,
+        opacity: 0.72,
+        attribution: 'Roads &copy; Esri'
+      }).addTo(map);
+      L.control.layers(
+        { 'Satellit': satellite },
+        { 'Orte/Grenzen': placeLabels, 'Straßen': roads },
+        { position: 'bottomright', collapsed: true }
+      ).addTo(map);
 
       const marker = L.marker([lat, lng], { draggable: true }).addTo(map);
       function send(latlng) {
