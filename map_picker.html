@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baustellenpunkt setzen</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background: #101010;
+      color: #f1edf4;
+      font: 14px Arial, sans-serif;
+    }
+    .bar {
+      position: fixed;
+      z-index: 1000;
+      left: 12px;
+      right: 12px;
+      top: 12px;
+      background: rgba(16, 16, 16, .9);
+      border: 1px solid rgba(184, 115, 51, .55);
+      border-radius: 8px;
+      padding: 10px 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    }
+    .bar b {
+      color: #d18938;
+    }
+    .bar span {
+      color: #c9c1cb;
+      display: block;
+      margin-top: 4px;
+    }
+    .error {
+      padding: 80px 24px 24px;
+      color: #ffb4a8;
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <b id="title">Baustellenpunkt setzen</b>
+    <span>Punkt im Satellitenbild anklicken. Die Koordinaten werden automatisch in der App gespeichert.</span>
+  </div>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const title = params.get('title') || 'Baustellenpunkt setzen';
+      const lat = Number(params.get('lat') || '46.796');
+      const lng = Number(params.get('lng') || '11.936');
+      const zoom = Number(params.get('zoom') || (params.has('lat') ? '19' : '13'));
+      document.getElementById('title').textContent = title;
+
+      if (!window.L) {
+        document.body.insertAdjacentHTML('beforeend', '<div class="error">Satellitenkarte konnte nicht geladen werden. Internetverbindung pruefen.</div>');
+        return;
+      }
+
+      const map = L.map('map', { zoomControl: true }).setView([lat, lng], zoom);
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 20,
+        attribution: 'Tiles &copy; Esri'
+      }).addTo(map);
+
+      const marker = L.marker([lat, lng], { draggable: true }).addTo(map);
+      function send(latlng) {
+        marker.setLatLng(latlng);
+        if (window.opener) {
+          window.opener.postMessage(JSON.stringify({
+            type: 'dw-regieapp-gps-picked',
+            lat: latlng.lat,
+            lng: latlng.lng
+          }), window.location.origin);
+        }
+        setTimeout(function () { window.close(); }, 250);
+      }
+      map.on('click', function (e) { send(e.latlng); });
+      marker.on('dragend', function (e) { send(e.target.getLatLng()); });
+    }());
+  </script>
+</body>
+</html>
