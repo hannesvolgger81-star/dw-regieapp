@@ -52,6 +52,8 @@
     (function () {
       const params = new URLSearchParams(window.location.search);
       const title = params.get('title') || 'Baustellenpunkt setzen';
+      const address = params.get('address') || '';
+      const fixed = params.get('fixed') === '1';
       const lat = Number(params.get('lat') || '46.796');
       const lng = Number(params.get('lng') || '11.936');
       const zoom = Number(params.get('zoom') || (params.has('lat') ? '19' : '13'));
@@ -84,6 +86,42 @@
       ).addTo(map);
 
       const marker = L.marker([lat, lng], { draggable: true }).addTo(map);
+      const startLatLng = L.latLng(lat, lng);
+
+      function updateInfo(text) {
+        const span = document.querySelector('.bar span');
+        if (span) span.textContent = text;
+      }
+
+      function distanceMeters(a, b) {
+        return map.distance(a, b);
+      }
+
+      async function centerOnAddressIfUseful() {
+        if (!address.trim()) return;
+        try {
+          updateInfo('Adresse wird gesucht: ' + address);
+          const query = address + ', Südtirol, Italien';
+          const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(query);
+          const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+          if (!response.ok) throw new Error('Adresssuche fehlgeschlagen');
+          const results = await response.json();
+          if (!Array.isArray(results) || results.length === 0) {
+            updateInfo('Adresse nicht gefunden. Punkt im Satellitenbild anklicken.');
+            return;
+          }
+          const found = L.latLng(Number(results[0].lat), Number(results[0].lon));
+          const tooFarAway = distanceMeters(startLatLng, found) > 5000;
+          if (!fixed || tooFarAway) {
+            marker.setLatLng(found);
+            map.setView(found, 18);
+          }
+          updateInfo('Punkt im Satellitenbild anklicken oder Marker verschieben. Die Koordinaten werden automatisch gespeichert.');
+        } catch (_) {
+          updateInfo('Adresssuche nicht erreichbar. Punkt im Satellitenbild anklicken.');
+        }
+      }
+
       function send(latlng) {
         marker.setLatLng(latlng);
         if (window.opener) {
@@ -97,6 +135,7 @@
       }
       map.on('click', function (e) { send(e.latlng); });
       marker.on('dragend', function (e) { send(e.target.getLatLng()); });
+      centerOnAddressIfUseful();
     }());
   </script>
 </body>
