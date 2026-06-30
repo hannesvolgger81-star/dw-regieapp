@@ -51587,7 +51587,7 @@ p===$&&A.a()
 o=p}else o=a
 p=o.f
 s=2
-return A.l(A.aLL(p!=null&&o.r!=null?A.dA("https://www.google.com/maps?q="+A.h(p)+","+A.h(o.r),0,null):A.dA("https://www.google.com/maps/search/?api=1&query="+A.Ld(2,o.e,B.aC,!1),0,null),B.wo),$async$uH)
+return A.l(A.aLL(p!=null&&o.r!=null?A.dA("https://www.google.com/maps?q="+A.h(p)+","+A.h(o.r)+"&t=k&z=20",0,null):A.dA("https://www.google.com/maps/search/?api=1&query="+A.Ld(2,o.e,B.aC,!1)+"&t=k&z=20",0,null),B.wo),$async$uH)
 case 2:return A.p(null,r)}})
 return A.q($async$uH,r)},
 zG(a,b,c){return this.a7e(a,b,c)},
