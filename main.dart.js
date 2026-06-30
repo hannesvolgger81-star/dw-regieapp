@@ -51506,11 +51506,11 @@ switch(a.a){case 0:s="Admin / D\xe4mmwerk"
 break
 case 1:s="Buchhaltung"
 break
-case 2:s="DWGroup / Vorarbeiter"
+case 2:s="DW-Group"
 break
-case 3:s="Bauleiter"
+case 3:s="DW-Projektleitung"
 break
-case 4:s="Kunde / Bauherr"
+case 4:s="Kunde/Baumanagement"
 break
 default:s=null}return s},
 a4c(){var s=this,r="Baustellen",q="Neue Regie",p="Rechnung",o="Einstellungen",n=t.Ns,m=A.b([new A.dS("Home",B.vT)],n),l=s.to
@@ -52058,7 +52058,7 @@ o.push(A.aj(r.b8,q,q,q,A.ar(q,q,B.N,q,q,q,q,q,q,q,q,12,q,q,q,q,q,!0,q,q,q,q,q,q,
 if(r.bc)o.push(B.aHU)
 if(a.length!==0){s=A.b([B.b6,B.aRx,B.as],p)
 B.l.I(s,new A.a_(a,new A.aB_(r),A.T(a).i("a_<1,f>")))
-B.l.I(o,s)}if(r.to===B.aC)B.l.I(o,A.b([B.b6,B.aRZ,B.as,A.fI(A.b([r.ee("Admin: "+r.yF("admin")),r.ee("Bauleiter: "+r.yF("bauleiter")),r.ee("DWGroup: "+r.yF("dwgroup")),r.ee("Kunde: "+r.yF("kunde")),r.ee("Buchhaltung: "+r.yF("buchhaltung"))],p),B.c2,8,8),B.as,A.aj("Diese Links kannst du f\xfcr den Test \xf6ffnen oder weitergeben. Echte Passw\xf6rter kommen im n\xe4chsten Schritt.",q,q,q,A.ar(q,q,B.N,q,q,q,q,q,q,q,q,12,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q,q)],p))
+B.l.I(o,s)}if(r.to===B.aC)B.l.I(o,A.b([B.b6,B.aRZ,B.as,A.fI(A.b([r.ee("Admin: "+r.yF("admin")),r.ee("DW-Projektleitung: "+r.yF("bauleiter")),r.ee("DW-Group: "+r.yF("dwgroup")),r.ee("Kunde/Baumanagement: "+r.yF("kunde")),r.ee("Buchhaltung: "+r.yF("buchhaltung"))],p),B.c2,8,8),B.as,A.aj("Diese Links kannst du f\xfcr den Test \xf6ffnen oder weitergeben. Echte Passw\xf6rter kommen im n\xe4chsten Schritt.",q,q,q,A.ar(q,q,B.N,q,q,q,q,q,q,q,q,12,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q,q)],p))
 return new A.cB("HOME",A.bt(o,B.aa,B.Q,B.S),q)},
 HV(a,b,c){var s=null,r=c==="nicht zugeteilt",q=A.hD(a,r?B.N:B.P,s,15),p=A.eF(A.aj(b,s,s,s,A.ar(s,s,B.N,s,s,s,s,s,s,s,s,12,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),s,s),s,82),o=r?B.N:B.D
 return new A.cf(B.TS,A.cV(A.b([q,B.aLY,p,A.cI(A.aj(c,s,s,s,A.ar(s,s,o,s,s,s,s,s,s,s,s,12,s,s,r?B.a3:B.vK,s,s,!0,s,s,s,s,s,s,s,s),s,s),1)],t.p),B.aa,B.Q,B.S,0),s)},
@@ -53750,7 +53750,7 @@ o===$&&A.a()
 o=a===o?A.a5(46,B.P.n()>>>16&255,B.P.n()>>>8&255,B.P.n()&255):A.a5(10,B.D.n()>>>16&255,B.D.n()>>>8&255,B.D.n()&255)
 s=A.d6(12)
 r=A.fx(a===p.y1?B.P:B.hG,1)
-return A.jp(!1,q,!0,A.dq(q,A.bt(A.b([A.aj(a.c+" "+a.d,q,q,q,B.bF,q,q),A.aj(a.e,q,q,q,A.ar(q,q,B.N,q,q,q,q,q,q,q,q,12,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q,q),B.as,p.HV(B.pn,"Bauleiter",p.HW(a,"site_manager")),p.HV(B.ku,"DWGroup",p.HW(a,"foreman")),p.HV(B.fC,"Kunde",p.HW(a,"customer"))],t.p),B.aa,B.Q,B.S),B.a6,new A.cC(o,q,r,s,q,q,B.aU),q,B.dJ,B.hU,1/0),q,!0,q,q,q,q,q,q,q,q,new A.aAZ(p,a),q,q,q,q,q,q,q)},
+return A.jp(!1,q,!0,A.dq(q,A.bt(A.b([A.aj(a.c+" "+a.d,q,q,q,B.bF,q,q),A.aj(a.e,q,q,q,A.ar(q,q,B.N,q,q,q,q,q,q,q,q,12,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q,q),B.as,p.HV(B.pn,"DW-Projektleitung",p.HW(a,"site_manager")),p.HV(B.ku,"DW-Group",p.HW(a,"foreman")),p.HV(B.fC,"Kunde/Baumanagement",p.HW(a,"customer"))],t.p),B.aa,B.Q,B.S),B.a6,new A.cC(o,q,r,s,q,q,B.aU),q,B.dJ,B.hU,1/0),q,!0,q,q,q,q,q,q,q,q,new A.aAZ(p,a),q,q,q,q,q,q,q)},
 $S:142}
 A.aAZ.prototype={
 $0(){var s=0,r=A.t(t.H),q=this,p
